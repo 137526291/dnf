@@ -19,5 +19,3 @@ killall -9 zergsvr
 killall -9 df_game_r
 killall -9 secagent
 
-cd
-./GateStop

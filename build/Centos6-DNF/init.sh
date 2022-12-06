@@ -111,13 +111,13 @@ else
 fi
 
 # 判断privatekey.pem文件是否初始化过
-if [ ! -f "/data/privatekey.pem" ];then
-  # 拷贝版本文件到持久化目录
-  cp /home/template/init/privatekey.pem /data/
-  echo "init privatekey.pem success"
-else
-  echo "privatekey.pem have already inited, do nothing!"
-fi
+# if [ ! -f "/data/privatekey.pem" ];then
+#   # 拷贝版本文件到持久化目录
+#   cp /home/template/init/privatekey.pem /data/
+#   echo "init privatekey.pem success"
+# else
+#   echo "privatekey.pem have already inited, do nothing!"
+# fi
 
 # 判断publickey.pem文件是否初始化过
 if [ ! -f "/data/publickey.pem" ];then
@@ -129,10 +129,10 @@ else
 fi
 
 # 判断Config.ini文件是否初始化过
-if [ ! -f "/data/Config.ini" ];then
-  # 拷贝版本文件到持久化目录
-  cp /home/template/init/Config.ini /data/
-  echo "init Config.ini success"
-else
-  echo "Config.ini have already inited, do nothing!"
-fi
+# if [ ! -f "/data/Config.ini" ];then
+#   # 拷贝版本文件到持久化目录
+#   cp /home/template/init/Config.ini /data/
+#   echo "init Config.ini success"
+# else
+#   echo "Config.ini have already inited, do nothing!"
+# fi

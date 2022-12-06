@@ -8,8 +8,6 @@ else
   echo "start game use normal mode"
 fi
 
-cd /root
-./GateRestart
 
 cd /home/neople/stun
 chmod 777 *

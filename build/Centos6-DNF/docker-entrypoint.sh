@@ -3,13 +3,8 @@ rm -rf /home/template/neople-tmp
 rm -rf /home/template/root-tmp
 mkdir -p /home/neople
 # 清理root下文件
-rm -rf /root/DnfGateServer
-rm -rf /root/GateRestart
-rm -rf /root/GateStop
 rm -rf /root/run
 rm -rf /root/stop
-rm -rf /root/Config.ini
-rm -rf /root/privatekey.pem
 
 # 复制待使用文件
 cp -r /home/template/neople /home/template/neople-tmp
@@ -48,15 +43,15 @@ mv /home/template/root-tmp/* /root/
 rm -rf /home/template/root-tmp
 chmod 777 /root/*
 # 拷贝证书key
-cp /data/privatekey.pem /root/
+# cp /data/privatekey.pem /root/
 # 构建配置文件软链[不能使用硬链接, 硬链接不可跨设备]
-ln -s /data/Config.ini /root/Config.ini
+# ln -s /data/Config.ini /root/Config.ini
 # 替换Config.ini中的GM用户名、密码、连接KEY、登录器版本[这里操作的对象是一个软链接不需要指定-type]
-sed -i --follow-symlinks "s/GAME_PASSWORD/$DNF_DB_GAME_PASSWORD/g" `find /root -name "*.ini"`
-sed -i --follow-symlinks "s/GM_ACCOUNT/$GM_ACCOUNT/g" `find /root -name "*.ini"`
-sed -i --follow-symlinks "s/GM_PASSWORD/$GM_PASSWORD/g" `find /root -name "*.ini"`
-sed -i --follow-symlinks "s/GM_CONNECT_KEY/$GM_CONNECT_KEY/g" `find /root -name "*.ini"`
-sed -i --follow-symlinks "s/GM_LANDER_VERSION/$GM_LANDER_VERSION/g" `find /root -name "*.ini"`
+# sed -i --follow-symlinks "s/GAME_PASSWORD/$DNF_DB_GAME_PASSWORD/g" `find /root -name "*.ini"`
+# sed -i --follow-symlinks "s/GM_ACCOUNT/$GM_ACCOUNT/g" `find /root -name "*.ini"`
+# sed -i --follow-symlinks "s/GM_PASSWORD/$GM_PASSWORD/g" `find /root -name "*.ini"`
+# sed -i --follow-symlinks "s/GM_CONNECT_KEY/$GM_CONNECT_KEY/g" `find /root -name "*.ini"`
+# sed -i --follow-symlinks "s/GM_LANDER_VERSION/$GM_LANDER_VERSION/g" `find /root -name "*.ini"`
 
 # 重建root, game用户,并限制game只能容器内服务访问
 service mysql start --skip-grant-tables
@@ -64,7 +59,7 @@ mysql -u root <<EOF
 delete from mysql.user;
 flush privileges;
 grant all privileges on *.* to 'root'@'%' identified by '$DNF_DB_ROOT_PASSWORD';
-grant all privileges on *.* to 'game'@'127.0.0.1' identified by '$DNF_DB_GAME_PASSWORD';
+grant all privileges on *.* to 'game'@'%' identified by '$DNF_DB_GAME_PASSWORD';
 flush privileges;
 select user,host,password from mysql.user;
 EOF

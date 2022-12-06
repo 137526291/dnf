@@ -17,7 +17,7 @@ ENV DNF_DB_GAME_PASSWORD=uu5!^%jg
 # 将模板添加到模版目录下[后续容器启动需要先将环境变量替换,再将文件移动到正确位置]
 ADD build/Centos6-DNF/neople /home/template/neople
 ADD build/Centos6-DNF/root /home/template/root
-ADD build/Centos6-DNF/privatekey.pem /home/template/init/
+# ADD build/Centos6-DNF/privatekey.pem /home/template/init/
 ADD build/Centos6-DNF/publickey.pem /home/template/init/
 # 初始化sql脚本
 COPY build/Centos6-DNF/init_sql.tgz /home/template/init/
@@ -28,7 +28,7 @@ ADD build/Centos6-DNF/df_game_r /home/template/init/
 # 初始化脚本
 ADD build/Centos6-DNF/init.sh /home/template/init/
 # 网关配置文件
-ADD build/Centos6-DNF/Config.ini /home/template/init/
+# ADD build/Centos6-DNF/Config.ini /home/template/init/
 # 启动脚本
 ADD build/Centos6-DNF/docker-entrypoint.sh /
 # TEA算法
